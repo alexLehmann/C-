@@ -23,17 +23,7 @@ namespace Dungeon
 
         private static List<Point> SearchShortesPath(List<List<Point>> list)
         {
-            int minCount = Int32.MaxValue;
-            int indexList = 0;
-            for (int i = 0; i < list.Count; i++)
-            {               
-                if (minCount > list[i].Count)
-                {
-                    minCount = list[i].Count;
-                    indexList = i;
-                }
-            }
-            return list[indexList].ToList();
+            return list.Where(y => y.Count().Equals(list.Min(x => x.Count()))).First();            
         }
 
         private static IEnumerable<List<Point>> JoinStartPathAndEndPath(List<List<Point>> pathStart, List<List<Point>> pathEnd) =>
